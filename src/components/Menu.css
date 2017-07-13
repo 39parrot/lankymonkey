@@ -1,0 +1,19 @@
+ul {
+  list-style-type: none
+}
+
+li {
+  padding: 5px;
+}
+
+.text {
+  padding: 5px;
+}
+
+.price {
+  width: 60px;
+  padding: 5px;
+  font-weight: bolder;
+  text-decoration: underline;
+  background-color: lightgrey;
+}
