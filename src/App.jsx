@@ -9,29 +9,33 @@ import { setObservableConfig, mapPropsStream } from 'recompose'
 import mostConfig from 'recompose/mostObservableConfig'
 import * as rp from 'request-promise-native'
 
+import AppLayout from './components/AppLayout';
+
 setObservableConfig(mostConfig)
 
 const App = () => (
-  <Router>
-    <div>
+  <AppLayout/>
 
-      <div>
-        <h3>Restaurants</h3>
-        <span>
-          <Link to="/restaurant/aslkdfhdsl">aslkdfhdsl</Link>
-        </span>
-        &nbsp;
-        <span>
-          <Link to="/restaurant/KJHLKG">KJHLKG</Link>
-        </span>
-      </div>
-
-      <hr/>
-
-      <Route exact path="/" component={Home}/>
-      <Route path="/restaurant/:id" component={Restaurant}/>
-    </div>
-  </Router>
+  // <Router>
+  //   <div>
+  //
+  //     <div>
+  //       <h3>Restaurants</h3>
+  //       <span>
+  //         <Link to="/resktaurant/aslkdfhdsl">aslkdfhdsl</Link>
+  //       </span>
+  //       &nbsp;
+  //       <span>
+  //         <Link to="/restaurant/KJHLKG">KJHLKG</Link>
+  //       </span>
+  //     </div>
+  //
+  //     <hr/>
+  //
+  //     <Route exact path="/" component={Home}/>
+  //     <Route path="/restaurant/:id" component={Restaurant}/>
+  //   </div>
+  // </Router>
 )
 
 const enhance = mapPropsStream(props$ => props$.flatMap(props =>
