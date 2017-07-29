@@ -7,6 +7,7 @@ import {
 import { fromPromise } from 'most'
 import { setObservableConfig, mapPropsStream } from 'recompose'
 import mostConfig from 'recompose/mostObservableConfig'
+// TODO: use axois instead
 import * as rp from 'request-promise-native'
 
 import AppLayout from './components/AppLayout';
