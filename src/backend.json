@@ -1,0 +1,7 @@
+{
+  "services": {
+    "menu": {
+      "get": "https://wt-dmitry-kouznetsov-gmail-com-0.run.webtask.io/menu"
+    }
+  }
+}

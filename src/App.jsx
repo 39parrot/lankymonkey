@@ -12,10 +12,13 @@ import * as rp from 'request-promise-native'
 
 import AppLayout from './components/AppLayout';
 
+// TODO: this is initial config -> should be somewhere else
 setObservableConfig(mostConfig)
 
 const App = () => (
-  <AppLayout/>
+  <Router>
+    <AppLayout/>
+  </Router>
 
   // <Router>
   //   <div>
@@ -23,7 +26,7 @@ const App = () => (
   //     <div>
   //       <h3>Restaurants</h3>
   //       <span>
-  //         <Link to="/resktaurant/aslkdfhdsl">aslkdfhdsl</Link>
+  //         <Link to="/restaurant/aslkdfhdsl">aslkdfhdsl</Link>
   //       </span>
   //       &nbsp;
   //       <span>
@@ -39,14 +42,15 @@ const App = () => (
   // </Router>
 )
 
-const enhance = mapPropsStream(props$ => props$.flatMap(props =>
+const enhance = mapPropsStream(prop$ => prop$.flatMap(props =>
   fromPromise(
     rp({
-      uri: 'https://wt-dmitry-kouznetsov-gmail-com-0.run.webtask.io/menu',
+      uri: 'https://wt-dmitry-kouznetsov-gmail-com-0.run.webtask.io/menu', // {"menu":[{"name":String,"price":Int}]}
       qs: { restaurant: props.match.params.id },
       json: true
     })
   ).map(resp => ({ ...props, menuBlob: resp}))
+  // TODO: handle error
 ))
 
 const Restaurant = enhance(({ match, menuBlob }) => (

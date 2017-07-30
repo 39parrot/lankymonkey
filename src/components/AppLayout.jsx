@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import Button from 'antd/lib/button';
 import '../App.css';
 import Block from 'react-blocks';
-import { Layout, Menu, Dropdown } from 'antd';
+import { Layout, Dropdown } from 'antd';
 import Auth0Lock from 'auth0-lock';
+import Menu from './Menu';
+import {
+  Route,
+  Link } from 'react-router-dom'
+
 const { Header, Content, Footer } = Layout;
 
+// TODO: yome -> lankymonkey
+// TODO: keep in a .gitignored file
 const cid = "FOomB3aVhSCLMjnJqcJ8exYuAZmNp6Kc";
 const domain = "yome.eu.auth0.com";
 
@@ -15,7 +22,7 @@ lock.on("authenticated", function(authResult) {
   // Use the token in authResult to getUserInfo() and save it to localStorage
   lock.getUserInfo(authResult.accessToken, function(error, profile) {
     if (error) {
-      // Handle error
+      // TODO: Handle error
       return;
     }
 
@@ -28,7 +35,6 @@ const accessToken = localStorage.getItem("accessToken");
 const profile = JSON.parse(localStorage.getItem("profile"));
 
 const logout = () => {
-  console.log('logout');
   localStorage.removeItem("accessToken");
   localStorage.removeItem("profile");
 };
@@ -53,7 +59,7 @@ class AppLayout extends Component {
         <Header>
           <Block layout>
             <Block className="logo">Brand</Block>
-            <Block>
+            {/* <Block>
               <Menu
                 theme="dark"
                 mode="horizontal"
@@ -64,7 +70,7 @@ class AppLayout extends Component {
                 <Menu.Item key="2">nav 2</Menu.Item>
                 <Menu.Item key="3">nav 3</Menu.Item>
               </Menu>
-            </Block>
+            </Block>*/}
             <Block layout flex justifyEnd>
               <Block layout horizontal centered>
                 {accessToken
@@ -79,7 +85,12 @@ class AppLayout extends Component {
           </Block>
         </Header>
         <Content style={{ padding: '0 50px' }}>
-          <div style={{ background: '#fff', padding: 24, height: '100%' }}>Content</div>
+          {/*<div style={{ background: '#fff', padding: 24 }}>*/}
+          <Block layout horizontal centered style={{ padding: 24 }}>
+            <Route exact path="/" render={props => (
+              <Menu restaurantId="aslkdfhdsl"/>
+            )}/>
+          </Block>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           Lanky Monkey, 2017
